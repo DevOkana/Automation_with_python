@@ -24,7 +24,7 @@ Make sure you have the following Python libraries installed:
 
 This function examines all files in the current directory (except the script itself) and moves them to corresponding folders according to their extension. You can customize the destination folders for each extension in the script. For example, files `.docx`, `.pdf`, `.txt`, etc., will be moved to the "documents" folder.
 
-### `delete_folders_empty(path)`.
+### `delete_empty_folder(route)`.
 
 This function searches for and removes empty folders in the provided path. It is useful for cleaning up the directory after organizing files.
 
