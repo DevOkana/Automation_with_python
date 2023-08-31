@@ -5,21 +5,21 @@ from PIL.ExifTags import TAGS
 from datetime import datetime
 
 
-# Obtener la ruta actual donde se encuentra el script
-ruta_actual = os.getcwd()
+# Get the current path where the script is located
+current_path = os.getcwd()
 
 
-def organizar_archivos():
-    # Obtener la lista de archivos en la ruta actual
-    archivos = os.listdir(ruta_actual)
+def organize_files():
+    # Get the list of files in the current path
+    files = os.listdir(current_path)
 
-    for archivo in archivos:
-        # Comprobar si es un archivo y no es el archivo Python en sí mismo
-        if os.path.isfile(archivo) and archivo != os.path.basename(__file__):
-            # Obtener la extensión del archivo
-            extension = os.path.splitext(archivo)[1].lower()
+    for file in files:
+        # Check if it is a file and it is not the Python file itself
+        if os.path.isfile(file) and file != os.path.basename(__file__):
+            # Get file extension
+            extension = os.path.splitext(file)[1].lower()
 
-            # Crear una carpeta si no existe según la extensión del archivo
+            # Create a folder if it does not exist according to the file extension
             if extension:
                 if extension in [
                     ".doc",
@@ -35,91 +35,91 @@ def organizar_archivos():
                     ".pptx",
                     ".odp",
                 ]:
-                    carpeta_destino = os.path.join(ruta_actual, "documentos")
+                    destination_folder = os.path.join(current_path, "documents")
                 elif extension in [".jpg", ".jpeg", ".png", ".gif", ".bmp"]:
-                    carpeta_destino = os.path.join(ruta_actual, "imagenes")
+                    destination_folder = os.path.join(current_path, "images")
                 elif extension in [".zip", ".rar", ".7z", ".tar", ".gz"]:
-                    carpeta_destino = os.path.join(ruta_actual, "comprimido")
+                    destination_folder = os.path.join(current_path, "compressed")
                 elif extension in [".mp3", ".wav", ".flac", ".aac", ".ogg"]:
-                    carpeta_destina = os.path.join(ruta_actual, "musica")
+                    folder_destina = os.path.join(current_path, "music")
                 elif extension in [".mp4", ".avi", ".mkv", ".mov", ".wmv", ".flv"]:
-                    carpeta_destino = os.path.join(ruta_actual, "videos")
+                    destination_folder = os.path.join(current_path, "movies")
                 elif extension in [".exe", ".msi"]:
-                    carpeta_destino = os.path.join(ruta_actual, "aplicaciones")
+                    destination_folder = os.path.join(current_path, "app")
                 elif extension in [".py"]:
-                    carpeta_destino = os.path.join(ruta_actual, "python")
+                    destination_folder = os.path.join(current_path, "python")
                 elif extension in [".java"]:
-                    carpeta_destino = os.path.join(ruta_actual, "java")
+                    destination_folder = os.path.join(current_path, "java")
                 elif extension in [".cpp"]:
-                    carpeta_destino = os.path.join(ruta_actual, "cpp")
+                    destination_folder = os.path.join(current_path, "cpp")
                 elif extension in [".c"]:
-                    carpeta_destino = os.path.join(ruta_actual, "c")
+                    destination_folder = os.path.join(current_path, "c")
                 elif extension in [".cs"]:
-                    carpeta_destino = os.path.join(ruta_actual, "csharp")
+                    destination_folder = os.path.join(current_path, "csharp")
                 elif extension in [".php"]:
-                    carpeta_destino = os.path.join(ruta_actual, "php")
+                    destination_folder = os.path.join(current_path, "php")
                 elif extension in [".html"]:
-                    carpeta_destino = os.path.join(ruta_actual, "html")
+                    destination_folder = os.path.join(current_path, "html")
                 elif extension in [".css"]:
-                    carpeta_destino = os.path.join(ruta_actual, "css")
+                    destination_folder = os.path.join(current_path, "css")
                 elif extension in [".js"]:
-                    carpeta_destino = os.path.join(ruta_actual, "javascript")
+                    destination_folder = os.path.join(current_path, "javascript")
                 elif extension in [".rb"]:
-                    carpeta_destino = os.path.join(ruta_actual, "ruby")
+                    destination_folder = os.path.join(current_path, "ruby")
                 elif extension in [".pl"]:
-                    carpeta_destino = os.path.join(ruta_actual, "perl")
+                    destination_folder = os.path.join(current_path, "perl")
                 elif extension in [".swift"]:
-                    carpeta_destino = os.path.join(ruta_actual, "swift")
+                    destination_folder = os.path.join(current_path, "swift")
                 elif extension in [".go"]:
-                    carpeta_destino = os.path.join(ruta_actual, "go")
+                    destination_folder = os.path.join(current_path, "go")
                 elif extension in [".ts"]:
-                    carpeta_destino = os.path.join(ruta_actual, "typescript")
+                    destination_folder = os.path.join(current_path, "typescript")
                 elif extension in [".lua"]:
-                    carpeta_destino = os.path.join(ruta_actual, "lua")
+                    destination_folder = os.path.join(current_path, "lua")
                 elif extension in [".r"]:
-                    carpeta_destino = os.path.join(ruta_actual, "r")
+                    destination_folder = os.path.join(current_path, "r")
                 elif extension in [".scala"]:
-                    carpeta_destino = os.path.join(ruta_actual, "scala")
+                    destination_folder = os.path.join(current_path, "scala")
                 elif extension in [".vb"]:
-                    carpeta_destino = os.path.join(ruta_actual, "visualbasic")
+                    destination_folder = os.path.join(current_path, "visualbasic")
                 elif extension in [".asm"]:
-                    carpeta_destino = os.path.join(ruta_actual, "ensamblador")
+                    destination_folder = os.path.join(current_path, "ensamblador")
                 else:
-                    carpeta_destino = os.path.join(ruta_actual, extension[1:])
+                    destination_folder = os.path.join(current_path, extension[1:])
 
-                if not os.path.exists(carpeta_destino):
-                    os.makedirs(carpeta_destino)
+                if not os.path.exists(destination_folder):
+                    os.makedirs(destination_folder)
 
                 try:
-                    # Mover el archivo a la carpeta correspondiente
-                    shutil.move(archivo, carpeta_destino)
+                    # Move the file to the corresponding folder
+                    shutil.move(file, destination_folder)
                 except shutil.Error:
                     print(
-                        "El archivo {0} ya esta copiado dentro de la carpeta {1}".format(
-                            archivo, carpeta_destino
+                        "The file {0} is already copied into the folder {1}".format(
+                            file, destination_folder
                         )
                     )
 
-    print("Organización de archivos completada.")
+    print("File organization completed.")
 
 
-def eliminar_carpetas_vacias(ruta):
-    for carpeta in os.listdir(ruta):
-        ruta_carpeta = os.path.join(ruta, carpeta)
-        if os.path.isdir(ruta_carpeta):
-            if not os.listdir(ruta_carpeta):
-                os.rmdir(ruta_carpeta)
-                print(f"Carpeta vacía {carpeta} eliminada.")
+def delete_empty_folder(route):
+    for folder in os.listdir(route):
+        route_folder = os.path.join(route, folder)
+        if os.path.isdir(route_folder):
+            if not os.listdir(route_folder):
+                os.rmdir(route_folder)
+                print(f"Folder is empty {folder} and has been removed.")
             else:
-                eliminar_carpetas_vacias(ruta_carpeta)
+                delete_empty_folder(route_folder)
 
 
-def obtener_fecha_creacion_imagen(archivo):
+def get_creation_date_image(file):
     try:
-        imagen = Image.open(archivo)
-        # Obtener la fecha de modificación del archivo
-        fecha_modificacion = datetime.fromtimestamp(os.path.getmtime(archivo)).date()
-        return str(fecha_modificacion.year)
+        imagen = Image.open(file)
+        # Get the file modification date
+        date_modification = datetime.fromtimestamp(os.path.getmtime(file)).date()
+        return str(date_modification.year)
 
     except (IOError, AttributeError):
         pass
@@ -127,42 +127,41 @@ def obtener_fecha_creacion_imagen(archivo):
     return None
 
 
-def organizar_imagenes():
-    # Obtener la ruta actual donde se encuentra el script
-    ruta_actual = os.getcwd()
+def organize_images():
+    # Get the current route where the script is located
+    current_path = os.getcwd()
 
-    # Obtener la ruta de la carpeta "imagenes"
-    carpeta_imagenes = os.path.join(ruta_actual, "imagenes")
+    # Obtain the path to the "images" folder
+    image_folder = os.path.join(current_path, "images")
 
-    # Obtener la lista de archivos de imagen en la carpeta "imagenes"
-    archivos_imagenes = os.listdir(carpeta_imagenes)
+    # Get the list of image files in the folder "images".
+    image_files = os.listdir(image_folder)
 
-    for archivo_imagen in archivos_imagenes:
-        ruta_imagen = os.path.join(carpeta_imagenes, archivo_imagen)
+    for image_file in image_files:
+        path_image = os.path.join(image_folder, image_file)
 
         # Obtener el año de creación de la imagen
-        fecha_creacion = obtener_fecha_creacion_imagen(ruta_imagen)
+        creation_date = get_creation_date_image(path_image)
 
-        if fecha_creacion:
-            carpeta_destino = os.path.join(carpeta_imagenes, fecha_creacion)
+        if creation_date:
+            destination_folder = os.path.join(image_folder, creation_date)
 
-            if not os.path.exists(carpeta_destino):
-                os.makedirs(carpeta_destino)
+            if not os.path.exists(destination_folder):
+                os.makedirs(destination_folder)
 
-            # Mover la imagen a la carpeta correspondiente según el año de creación
-            shutil.move(ruta_imagen, carpeta_destino)
+            # Move the imagen to the corresponding folder according to the creation year
+            shutil.move(path_image, destination_folder)
             print(
-                f"Imagen {archivo_imagen} movida a la carpeta {os.path.basename(carpeta_destino)}."
+                f"Imagen {image_file} move to the folder {os.path.basename(destination_folder)}."
             )
 
-if __name__ == '__main__':
-    try: 
-        # Ejemplo de uso
-        organizar_imagenes()
-    except: 
-        None
-    # Ejemplo de uso
-    eliminar_carpetas_vacias(ruta_actual)
-    organizar_archivos()
 
-    input("Presiona Enter para continuar...")
+if __name__ == "__main__":
+    try:
+        organize_images()
+    except:
+        None
+    delete_empty_folder(current_path)
+    organize_files()
+
+    input("Press enter for continue")
